@@ -92,19 +92,19 @@ function operateList(expression){
 
     if (operator === '+'){
         
-        return add(value1, value2);
+        return Math.round(add(value1, value2) * 1000) / 1000;
 
     } else if (operator === '-') {
 
-        return subtract(value1, value2);
+        return Math.round(subtract(value1, value2) * 1000) / 1000;
 
     } else if (operator === '*') {
 
-        return multiply(value1, value2);
+        return Math.round(multiply(value1, value2) * 1000) / 1000;
 
     } else if (operator === '/') {
 
-        return divide(value1, value2);
+        return Math.round(divide(value1, value2) * 1000) / 1000;
 
     };
 };
@@ -118,7 +118,7 @@ dotButton = document.querySelector('#dot-button')
 
 let expressionInputs = []
 let newInput = ''
-let result = 0
+let result = ''
 
 displayValue.textContent = newInput
 
@@ -169,11 +169,11 @@ function calculateEqual(){
 };
 
 function clear(){
-    expressionInputs = []
-    newInput = ''
-    result = 0
+    expressionInputs = [];
+    newInput = '';
+    result = '';
 
-    displayValue.textContent = newInput
+    displayValue.textContent = newInput;
 }
 
 buttons.forEach(button => {
@@ -212,8 +212,13 @@ buttons.forEach(button => {
         }
 
         if (button.id === 'del') {
-            newInput = newInput.substring(0, newInput.length-1);
-            displayValue.textContent = newInput;
+            if (newInput === ''){
+                clear()
+            }
+            else {
+                newInput = newInput.substring(0, newInput.length-1);
+                displayValue.textContent = newInput;
+            }
         }        
     })
 });
