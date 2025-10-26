@@ -5,7 +5,7 @@
     /* max-height: 500px; */
     width: 293px;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 50px;
     border-radius: 10px;
     padding: 10px;
     padding-right: 10px;
@@ -64,7 +64,7 @@ body{
     border-color: gray;
 }
 
-.operator{
+.operator, .equal{
     background-color: #FFCC00;
 }
 
