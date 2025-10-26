@@ -109,25 +109,12 @@ function operateList(expression){
     };
 };
 
-// let expression1 = '5+2';
-// let expression2 = '5-2';
-// let expression3 = '5*2';
-// let expression4 = '5/2';
-// let expression5 = '5/0';
-
-// console.log(operate(expression1))
-// console.log(operate(expression2))
-// console.log(operate(expression3))
-// console.log(operate(expression4))
-// console.log(operate(expression5))
-
-
-
 
 //////////// EventListener ////////////////
 
 buttons = document.querySelectorAll('button')
 displayValue = document.querySelector('.display-values')
+dotButton = document.querySelector('#dot-button')
 
 let expressionInputs = []
 let newInput = ''
@@ -135,28 +122,59 @@ let result = 0
 
 displayValue.textContent = newInput
 
+function checkDotButton(){
+    if (newInput.includes('.')) {
+        dotButton.disabled=true;
+    } else {
+        dotButton.disabled=false;
+    }
+}
+
 function insertExpressionNumbers(digito){
     newInput = newInput+digito
+
+    checkDotButton();
+
     return newInput
 };
 
 function insertExpressionOperator(operator){
-    expressionInputs.push(newInput)
-    expressionInputs.push(operator)
-    newInput = ''
+    if (newInput === ''){
+        console.log("newInput = ''")
+    } else {
+        if (expressionInputs.length === 2) {
+            displayValue.textContent = calculateEqual()
+        }
+        expressionInputs.push(newInput)
+        expressionInputs.push(operator)
+        newInput = ''
+        checkDotButton();
+    }
 };
 
 function calculateEqual(){
-    expressionInputs.push(newInput)
-    console.log(expressionInputs)
+    if (newInput === ''){
+        console.log("newInput = ''")
+    } else {
+        expressionInputs.push(newInput)
+        // console.log(expressionInputs)
 
-    result = operateList(expressionInputs)
+        result = operateList(expressionInputs)
 
-    expressionInputs = []
-    newInput = result
+        expressionInputs = []
+        newInput = result
 
-    return result
+        return result
+    }
 };
+
+function clear(){
+    expressionInputs = []
+    newInput = ''
+    result = 0
+
+    displayValue.textContent = newInput
+}
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
@@ -167,24 +185,36 @@ buttons.forEach(button => {
 
         if (button.className.includes('number')) {
             displayValue.textContent = insertExpressionNumbers(button.textContent);
-            console.log(newInput);
+            // console.log(newInput);
         }
 
         if (button.className.includes('operator')) {
-            if (expressionInputs.length === 3){
+
+            if (expressionInputs.length >= 3){
                 displayValue.textContent = calculateEqual()
-                console.log(expressionInputs)
-                console.log(result)
+                // console.log(expressionInputs)
+                // console.log(result)
             }
 
             insertExpressionOperator(button.textContent)
-            console.log(expressionInputs)
+            // console.log(expressionInputs)
+
         }
 
         if (button.className.includes('equal')) {
             displayValue.textContent = calculateEqual()
-            console.log(expressionInputs)
-            console.log(result)
+            // console.log(expressionInputs)
+            // console.log(result)
         }
+
+        if (button.id === 'clear') {
+            clear();
+        }
+
+        if (button.id === 'del') {
+            newInput = newInput.substring(0, newInput.length-1);
+            displayValue.textContent = newInput;
+        }        
     })
-})
+});
+
