@@ -223,3 +223,100 @@ buttons.forEach(button => {
     })
 });
 
+
+//////////// Keyboard Events ////////////////
+
+
+bodyElement = document.querySelector('body');
+let clickEvent = new Event('click');
+
+const btn1 = document.querySelector('#button-1');
+const btn2 = document.querySelector('#button-2');
+const btn3 = document.querySelector('#button-3');
+const btn4 = document.querySelector('#button-4');
+const btn5 = document.querySelector('#button-5');
+const btn6 = document.querySelector('#button-6');
+const btn7 = document.querySelector('#button-7');
+const btn8 = document.querySelector('#button-8');
+const btn9 = document.querySelector('#button-9');
+const btn0 = document.querySelector('#button-0');
+const btnDot = document.querySelector('#dot-button');
+const btnEqual = document.querySelector('#button-equal');
+const btnAdd = document.querySelector('#button-add');
+const btnSubtract = document.querySelector('#button-subtract');
+const btnMultiply = document.querySelector('#button-multiply');
+const btnDivide = document.querySelector('#button-divide');
+const btnClear = document.querySelector('#clear');
+const btnDel = document.querySelector('#del');
+
+
+
+bodyElement.addEventListener('keydown', (event) => {
+    console.log(`key=${event.key},code=${event.code}`);
+
+    switch (event.key){
+        case '1': 
+            btn1.dispatchEvent(clickEvent);
+            break;
+        case '2': 
+            btn2.dispatchEvent(clickEvent);
+            break;
+        case '3': 
+            btn3.dispatchEvent(clickEvent);
+            break;
+        case '4': 
+            btn4.dispatchEvent(clickEvent);
+            break;
+        case '5': 
+            btn5.dispatchEvent(clickEvent);
+            break;
+        case '6': 
+            btn6.dispatchEvent(clickEvent);
+            break;
+        case '7': 
+            btn7.dispatchEvent(clickEvent);
+            break;
+        case '8': 
+            btn8.dispatchEvent(clickEvent);
+            break;
+        case '9': 
+            btn9.dispatchEvent(clickEvent);
+            break;
+        case '0': 
+            btn0.dispatchEvent(clickEvent);
+            break;
+        case '.': 
+            btnDot.dispatchEvent(clickEvent);
+            break;
+        case '+': 
+            btnAdd.dispatchEvent(clickEvent);
+            break;
+        case '-': 
+            btnSubtract.dispatchEvent(clickEvent);
+            break;
+        case '*': 
+            btnMultiply.dispatchEvent(clickEvent);
+            break;
+        case '/': 
+            btnDivide.dispatchEvent(clickEvent);
+            break;
+        case 'Enter': 
+            btnEqual.dispatchEvent(clickEvent);
+            break;
+        case 'Backspace': 
+            btnDel.dispatchEvent(clickEvent);
+            break;
+        case 'Delete': 
+            btnClear.dispatchEvent(clickEvent);
+            break;
+        case 'Escape': 
+            btnClear.dispatchEvent(clickEvent);
+            break;
+    };
+
+});
+
+
+
+
+
