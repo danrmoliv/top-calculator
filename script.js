@@ -131,8 +131,13 @@ function checkDotButton(){
 }
 
 function insertExpressionNumbers(digito){
-    newInput = newInput+digito
+    if ((result !== '') && (result === newInput)){
+        clear()
+    }
 
+    if (newInput.length < 9){
+        newInput = newInput+digito
+    }
     checkDotButton();
 
     return newInput
@@ -252,7 +257,7 @@ const btnDel = document.querySelector('#del');
 
 
 bodyElement.addEventListener('keydown', (event) => {
-    console.log(`key=${event.key},code=${event.code}`);
+    // console.log(`key=${event.key},code=${event.code}`);
 
     switch (event.key){
         case '1': 
